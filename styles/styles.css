@@ -123,14 +123,18 @@ footer {
   img.center {
     width: 320px;
   }
+
+  img.center {
+    height: auto;
+  }
 }
 @media screen and (min-width: 861px) {
   img.center {
-    width: 800px;
+    width: width;
   }
 }
 img.center {
-  height: auto;
+  height: height;
 }
 
 /*# sourceMappingURL=styles.css.map */

@@ -123,9 +123,10 @@ footer{
 
 @media screen and ( max-width: 860px ) {
     img.center { width: 320px; }
+    img.center { height: auto; }
 }
 
 @media screen and ( min-width: 861px ) {
-    img.center { width: 800px; }
+    img.center { width: width; }
 }
-img.center { height: auto; }
+img.center { height: height; }

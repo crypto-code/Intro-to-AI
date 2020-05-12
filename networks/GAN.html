@@ -95,7 +95,7 @@
                 The goal of the discriminator is to identify images coming from the generator as fake.
             </p>
             <p>
-                <img src="../assets/networks/gan.png" class="center">
+                <img src="../assets/networks/gan.png" class="center" width = 800>
             </p>
             <p>
                 Here are the steps a GAN takes:
@@ -187,6 +187,97 @@
                     <li>generator loss, which penalizes the generator for failing to fool the discriminator</li>
                 </ul>
                 <img src="../assets/networks/gen.svg" class="center">
+            </p>
+            <h3>Random Input</h3>
+            <p>
+                Neural networks need some form of input. 
+                Normally we input data that we want to do something with, like an instance that we want to classify or make a prediction about. 
+                But what do we use as input for a network that outputs entirely new data instances?
+            </p>
+            <p>
+                In its most basic form, a GAN takes random noise as its input. 
+                The generator then transforms this noise into a meaningful output. 
+                By introducing noise, we can get the GAN to produce a wide variety of data, sampling from different places in the target distribution.
+            </p>
+            <p>
+                Experiments suggest that the distribution of the noise doesn't matter much, so we can choose something that's easy to sample from, like a uniform distribution. 
+                For convenience the space from which the noise is sampled is usually of smaller dimension than the dimensionality of the output space.
+            </p>
+            <h3>Using the Discriminator to Train the Generator</h3>
+            <p>
+                To train a neural net, we alter the net's weights to reduce the error or loss of its output. 
+                In our GAN, however, the generator is not directly connected to the loss that we're trying to affect. 
+                The generator feeds into the discriminator net, and the discriminator produces the output we're trying to affect. 
+                The generator loss penalizes the generator for producing a sample that the discriminator network classifies as fake.
+            </p>
+            <p>
+                This extra chunk of network must be included in backpropagation. 
+                Backpropagation adjusts each weight in the right direction by calculating the weight's impact on the output — how the output would change if you changed the weight. 
+                But the impact of a generator weight depends on the impact of the discriminator weights it feeds into. 
+                So backpropagation starts at the output and flows back through the discriminator into the generator.
+            </p>
+            <p>
+                At the same time, we don't want the discriminator to change during generator training. 
+                Trying to hit a moving target would make a hard problem even harder for the generator.
+            </p>
+            <p>
+                So we train the generator with the following procedure each generation:
+                <ol class="listobject">
+                    <li>Sample random noise.</li>
+                    <li>Produce generator output from sampled random noise.</li>
+                    <li>Get discriminator "Real" or "Fake" classification for generator output.</li>
+                    <li>Calculate loss from discriminator classification.</li>
+                    <li>Backpropagate through both the discriminator and generator to obtain gradients.</li>
+                    <li>Use gradients to change only the generator weights.</li>
+                </ol>
+            </p>
+        </div>
+        <div>
+            <h2>GAN Training</h2>
+            <p>
+                Because a GAN contains two separately trained networks, its training algorithm must address two complications:
+                <ul class = "listobject">
+                    <li>GANs must juggle two different kinds of training (generator and discriminator).</li>
+                    <li>GAN convergence is hard to identify.</li>
+                </ul>
+            </p>
+            <h3>Alternating Training</h3>
+            <p>
+                The generator and the discriminator have different training processes. 
+                GAN training proceeds in alternating periods:
+                <ol class="listobject">
+                    <li>The discriminator trains for one or more epochs.</li>
+                    <li>The generator trains for one or more epochs.</li>
+                    <li>Repeat steps 1 and 2 to continue to train the generator and discriminator networks.</li>
+                </ol>
+            </p>
+            <p>
+                We keep the generator constant during the discriminator training phase. 
+                As discriminator training tries to figure out how to distinguish real data from fake, it has to learn how to recognize the generator's flaws. 
+                That's a different problem for a thoroughly trained generator than it is for an untrained generator that produces random output.
+            </p>
+            <p>
+                Similarly, we keep the discriminator constant during the generator training phase. 
+                Otherwise the generator would be trying to hit a moving target and might never converge.
+            </p>
+            <p>
+                It's this back and forth that allows GANs to tackle otherwise intractable generative problems. 
+                We get a toehold in the difficult generative problem by starting with a much simpler classification problem. 
+                Conversely, if you can't train a classifier to tell the difference between real and generated data even for the initial random generator output, you can't get the GAN training started.
+                <img src="../assets/networks/ganmath.jpeg" class="center" width=800>
+            </p>
+            <h3>Convergence</h3>
+            <p>
+                As the generator improves with training, the discriminator performance gets worse because the discriminator can't easily tell the difference between real and fake. 
+                If the generator succeeds perfectly, then the discriminator has a 50% accuracy. 
+                In effect, the discriminator flips a coin to make its prediction.
+            </p>
+            <p>
+                This progression poses a problem for convergence of the GAN as a whole: the discriminator feedback gets less meaningful over time. 
+                If the GAN continues training past the point when the discriminator is giving completely random feedback, then the generator starts to train on junk feedback, and its own quality may collapse.
+            </p>
+            <p>
+                For a GAN, convergence is often a fleeting, rather than stable, state.
             </p>
         </div>
         <footer class="footer">
