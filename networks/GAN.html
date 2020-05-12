@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Artificial Intelligence</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="../styles/styles.css">
+    </head>
+    <body>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="../index.html">
+            <img src="../assets/logo.PNG" width="30" height="30" alt="">
+            Home
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Search Algorithms
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <a class="dropdown-item" href="../search/search.html">Intro</a>
+                        <a class="dropdown-item" href="../search/bfs.html">BFS</a>
+                        <a class="dropdown-item" href="../search/dfs.html">DFS</a>
+                        <a class="dropdown-item" href="../search/asearch.html">A* Search</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Neural Networks
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="./network.html">Intro</a>
+                        <a class="dropdown-item" href="./MLP.html">Simple MLP</a>
+                        <a class="dropdown-item" href="./CNN.html">CNNs</a>
+                        <a class="dropdown-item" href="./RNN.html">RNNs</a>
+                        <a class="dropdown-item" href="./GAN.html">GANs</a>
+                    </div>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Reinforcement Learning <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+          </div>
+      </nav>
+        <h1>Introduction to Generative Adversarial Networks</h1>
+        <div>
+            <p>
+                Generative adversarial networks (GANs) are algorithmic architectures that use two neural networks, 
+                pitting one against the other (thus the “adversarial”) in order to generate new, synthetic instances of data that can pass for real data. 
+                They are used widely in image generation, video generation and voice generation.
+            </p>
+        </div>
+        <div>
+            <h2>Generative vs. Discriminative Algorithms</h2>
+            <p>
+                To understand GANs, you should know how generative algorithms work, and for that, contrasting them with discriminative algorithms is instructive. 
+                Discriminative algorithms try to classify input data; that is, given the features of an instance of data, they predict a label or category to which that data belongs.
+            </p>
+            <p>
+                For example, given all the words in an email (the data instance), a discriminative algorithm could predict whether the message is spam or not_spam. spam is one of the labels, 
+                and the bag of words gathered from the email are the features that constitute the input data. When this problem is expressed mathematically, the label is called y and the features are called x. 
+                The formulation p(y|x) is used to mean “the probability of y given x”, which in this case would translate to “the probability that an email is spam given the words it contains.”
+            </p>
+            <p>
+                So discriminative algorithms map features to labels. 
+                They are concerned solely with that correlation. 
+                One way to think about generative algorithms is that they do the opposite. 
+                Instead of predicting a label given certain features, they attempt to predict features given a certain label.
+            </p>
+            <p>
+                The question a generative algorithm tries to answer is: Assuming this email is spam, how likely are these features? While discriminative models care about the relation between y and x, generative models care about “how you get x.” 
+                They allow you to capture p(x|y), the probability of x given y, or the probability of features given a label or category. 
+                (That said, generative algorithms can also be used as classifiers. It just so happens that they can do more than categorize input data.)
+            </p>
+        </div>
+        <div>
+            <h2>How GANs Work</h2>
+            <p>
+                One neural network, called the generator, generates new data instances, while the other, the discriminator, evaluates them for authenticity; i.e. the discriminator decides whether each instance of data that it reviews belongs to the actual training dataset or not.
+            </p>
+            <p>
+                The goal of the discriminator, when shown an instance from the true dataset, is to recognize those that are authentic.
+                Meanwhile, the generator is creating new, synthetic images that it passes to the discriminator. 
+                It does so in the hopes that they, too, will be deemed authentic, even though they are fake. 
+                The goal of the generator is to generate passable images: to lie without being caught. 
+                The goal of the discriminator is to identify images coming from the generator as fake.
+            </p>
+            <p>
+                <img src="../assets/networks/gan.png" class="center">
+            </p>
+            <p>
+                Here are the steps a GAN takes:
+                <ul class = "listobject">
+                    <li>
+                        The generator takes in random numbers and returns an image.
+                    </li>
+                    <li>
+                        This generated image is fed into the discriminator alongside a stream of images taken from the actual, ground-truth dataset.
+                    </li>
+                    <li>
+                        The discriminator takes in both real and fake images and returns probabilities, a number between 0 and 1, with 1 representing a prediction of authenticity and 0 representing fake.
+                    </li>
+                </ul>
+            </p>
+            <p>
+                So you have a double feedback loop:
+                
+                <ul class = "listobject">
+                    <li>
+                        The discriminator is in a feedback loop with the ground truth of the images, which we know.
+                    </li>
+                    <li>
+                        The generator is in a feedback loop with the discriminator.
+                    </li>
+                </ul>
+            </p>
+        </div>
+        <div>
+            <h2>The Discriminator</h2>
+            <p>
+                The discriminator in a GAN is simply a classifier. 
+                It tries to distinguish real data from the data created by the generator. 
+                It could use any network architecture appropriate to the type of data it's classifying.
+                <img src="../assets/networks/disc.svg">
+            </p>
+            <h3>Discriminator Training Data</h3>
+            <p>
+                The discriminator's training data comes from two sources:
+                <ul class="listobject">
+                    <li>
+                        <b>Real data</b> instances, such as real pictures of people. 
+                        The discriminator uses these instances as positive examples during training.
+                    </li>
+                    <li>
+                        <b>Fake data</b> instances created by the generator. 
+                        The discriminator uses these instances as negative examples during training.
+                    </li>
+                </ul>
+            </p>
+            <p>
+                In Figure, the two "Sample" boxes represent these two data sources feeding into the discriminator. 
+                During discriminator training the generator does not train. 
+                Its weights remain constant while it produces examples for the discriminator to train on.
+            </p>
+            <h3>Training the Discriminator</h3>
+            <p>
+                The discriminator connects to two loss functions. 
+                During discriminator training, the discriminator ignores the generator loss and just uses the discriminator loss. 
+                We use the generator loss during generator 
+                During the discriminator training: 
+                <ol class="listobject">
+                    <li>
+                        The discriminator classifies both real data and fake data from the generator.
+                    </li>
+                    <li>
+                        The discriminator loss penalizes the discriminator for misclassifying a real instance as fake or a fake instance as real.
+                    </li>
+                    <li>
+                        The discriminator updates its weights through backpropagation from the discriminator loss through the discriminator network.
+                    </li>
+                </ol>
+            </p>
+        </div>
+        <div>
+            <h2>The Generator</h2>
+            <p>
+                The generator part of a GAN learns to create fake data by incorporating feedback from the discriminator. 
+                It learns to make the discriminator classify its output as real.
+            </p>
+            <p>
+                Generator training requires tighter integration between the generator and the discriminator than discriminator training requires. 
+                The portion of the GAN that trains the generator includes:
+                <ul class="listobject">
+                    <li>random noise input</li>
+                    <li>generator network, which transforms the random input into a data instance</li>
+                    <li>discriminator network, which classifies the generated data</li>
+                    <li>discriminator output</li>
+                    <li>generator loss, which penalizes the generator for failing to fool the discriminator</li>
+                </ul>
+                <img src="../assets/networks/gen.svg" class="center">
+            </p>
+        </div>
+        <footer class="footer">
+            <div class="footer">
+                <span>Author: Atin Sakkeer Hussain</span>
+            </div>
+        </footer>
+    </body>
+</html>

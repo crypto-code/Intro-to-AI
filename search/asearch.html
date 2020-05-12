@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Artificial Intelligence</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="../styles/styles.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="../index.html">
+                <img src="../assets/logo.PNG" width="30" height="30" alt="">
+                Home
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="./search.html" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Search Algorithms
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="./search.html">Intro</a>
+                            <a class="dropdown-item" href="./bfs.html">BFS</a>
+                            <a class="dropdown-item" href="./dfs.html">DFS</a>
+                            <a class="dropdown-item" href="./asearch.html">A* Search</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Neural Networks
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="../networks/network.html">Intro</a>
+                            <a class="dropdown-item" href="../networks/MLP.html">Simple MLP</a>
+                            <a class="dropdown-item" href="../networks/CNN.html">CNNs</a>
+                            <a class="dropdown-item" href="../networks/RNN.html">RNNs</a>
+                            <a class="dropdown-item" href="../networks/GAN.html">GANs</a>
+                        </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Reinforcement Learning <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+              </div>
+          </nav>
+        <h1>A* Search Algorithm</h1>
+        <div>
+            <p>
+                A* Search unlike, BFS and DFS, is an informed search algorithm.
+                This means that A* only performs a step if it seems promising and reasonable, 
+                according to its functions, unlike other graph-traversal algorithms. 
+                It runs towards the goal and doesn't consider any non-optimal steps if it doesn't have to consider them.
+            </p>
+        </div>
+        <div>
+            <p>
+                A* is based on using heuristic methods to achieve optimality and completeness, 
+                and is a variant of the best-first algorithm.
+                Each time A* enters a state, it calculates the cost, f(n) (n being the neighboring node), 
+                to travel to all of the neighboring nodes, and then enters the node with the lowest value of f(n).
+                These values are calculated with the following formula:
+            </p>
+            <div class="function">f(n) = g(n)+h(n)</div>
+            <p>
+                g(n) being the value of the shortest path from the start node to node n, 
+                and h(n) being a heuristic approximation of the node's value.
+                <img src="../assets/search/asearch.gif" class="center" height=300 width = 800>
+                <br>The efficiency of A* is highly dependent on the heuristic value h(n), 
+                and depending on the type of problem, 
+                we may need to use a different heuristic function for it to find the optimal solution.</br>
+            </p>
+            
+        </div>
+        <div>
+            <h2>Psuedocode</h2>
+            <div class="card">
+                <div class="card-body">
+                <pre class="code">
+                let the openList equal empty list of nodes
+                let the closedList equal empty list of nodes
+                
+                put the startNode on the openList (leave it's f at zero)
+                
+                while the openList is not empty
+        
+                    let the currentNode equal the node with the least f value
+                    remove the currentNode from the openList
+                    add the currentNode to the closedList
+    
+                    if currentNode is the goal
+                        found the end! Backtrack to get path
+                
+                    let the children of the currentNode equal the adjacent nodes
+    
+                    for each child in the children
+                        if child is in the closedList
+                            continue to beginning of for loop
+    
+                        child.g = currentNode.g + distance between child and current
+                        child.h = distance from child to end
+                        child.f = child.g + child.h
+        
+                    if child.position is in the openList's nodes positions
+                        if the child.g is higher than the openList node's g
+                            continue to beginning of for loop
+                
+                    add the child to the openList</pre>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="footer">
+                <span>Author: Atin Sakkeer Hussain</span>
+            </div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Artificial Intelligence</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="../styles/styles.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="../index.html">
+                <img src="../assets/logo.PNG" width="30" height="30" alt="">
+                Home
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="./search.html" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Search Algorithms
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="./search.html">Intro</a>
+                            <a class="dropdown-item" href="./bfs.html">BFS</a>
+                            <a class="dropdown-item" href="./dfs.html">DFS</a>
+                            <a class="dropdown-item" href="./asearch.html">A* Search</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Neural Networks
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="../networks/network.html">Intro</a>
+                            <a class="dropdown-item" href="../networks/MLP.html">Simple MLP</a>
+                            <a class="dropdown-item" href="../networks/CNN.html">CNNs</a>
+                            <a class="dropdown-item" href="../networks/RNN.html">RNNs</a>
+                            <a class="dropdown-item" href="../networks/GAN.html">GANs</a>
+                        </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Reinforcement Learning <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+              </div>
+          </nav>
+        <h1>Search Algorithms</h1>
+        <div>
+            <p>
+                In Artificial Intelligence, Search techniques are universal problem-solving methods. 
+                Rational agents or Problem-solving agents in AI mostly used these search strategies or algorithms to solve a specific problem and provide the best result. 
+                Problem-solving agents are the goal-based agents and use atomic representation. 
+                <img src="../assets/search/maze.gif" class="center">
+                <p style="margin-left: 45%;">Maze Search Algorithm</p>
+            </p>
+        </div>
+        <div>
+            <h2>Search Algorithm Terminologies</h2>
+            <p>
+            <ul class="listobject">
+                <li>
+                Search: Searchingis a step by step procedure to solve a search-problem in a given search space. A search problem can have three main factors:
+                </li>
+                <li>
+                Search Space: Search space represents a set of possible solutions, which a system may have.
+                </li>
+                <li>
+                Start State: It is a state from where agent begins the search.
+                </li>
+                <li>
+                Goal test: It is a function which observe the current state and returns whether the goal state is achieved or not.
+                </li>
+                <li>
+                Search tree: A tree representation of search problem is called Search tree. The root of the search tree is the root node which is corresponding to the initial state.
+                </li>
+                <li>
+                Actions: It gives the description of all the available actions to the agent.
+                </li>
+                <li>
+                Transition model: A description of what each action do, can be represented as a transition model.
+                </li>
+                <li>
+                Path Cost: It is a function which assigns a numeric cost to each path.
+                </li>
+                <li>
+                Solution: It is an action sequence which leads from the start node to the goal node.
+                </li>
+                <li>
+                Optimal Solution: If a solution has the lowest cost among all solutions.
+                </li>
+            </ul>
+            </p>
+        </div>
+        <div>
+            <h2>Properties of Search Algorithms</h2>
+            <p>
+                Following are the four essential properties of search algorithms to compare the efficiency of these algorithms:
+            <ul class="listobject">
+                <li>
+                    Completeness: A search algorithm is said to be complete if it guarantees to return a solution if at least any solution exists for any random input.
+                </li>
+                <li>
+                    Optimality: If a solution found for an algorithm is guaranteed to be the best solution (lowest path cost) among all other solutions, then such a solution for is said to be an optimal solution.
+                </li>
+                <li>
+                    Time Complexity: Time complexity is a measure of time for an algorithm to complete its task.
+                </li>
+                <li>
+                    Space Complexity: It is the maximum storage space required at any point during the search, as the complexity of the problem
+                </li>  
+            </ul>  
+            </p>
+        </div>
+        <div>
+            <h2>Types of Search Algorithms</h2>
+            <p>
+                <img src="../assets/search/type.png" class="center">
+                Here we will focus on Breadth First Search, Depth First Search and A* Search Algorithms
+            </p>
+        </div>
+        <footer class="footer">
+            <div class="footer">
+                <span>Author: Atin Sakkeer Hussain</span>
+            </div>
+        </footer>
+    </body>
+</html>

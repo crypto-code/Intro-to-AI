@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Artificial Intelligence</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="../styles/styles.css">
+    </head>
+    <body>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="../index.html">
+            <img src="../assets/logo.PNG" width="30" height="30" alt="">
+            Home
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Search Algorithms
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <a class="dropdown-item" href="../search/search.html">Intro</a>
+                        <a class="dropdown-item" href="../search/bfs.html">BFS</a>
+                        <a class="dropdown-item" href="../search/dfs.html">DFS</a>
+                        <a class="dropdown-item" href="../search/asearch.html">A* Search</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Neural Networks
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="./network.html">Intro</a>
+                        <a class="dropdown-item" href="./MLP.html">Simple MLP</a>
+                        <a class="dropdown-item" href="./CNN.html">CNNs</a>
+                        <a class="dropdown-item" href="./RNN.html">RNNs</a>
+                        <a class="dropdown-item" href="./GAN.html">GANs</a>
+                    </div>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Reinforcement Learning <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+          </div>
+      </nav>
+        <h1>Introduction to Convolutional Neural Networks</h1>
+        <div>
+            <p>
+                When it comes to Machine Learning, Artificial Neural Networks perform really well. 
+                Artificial Neural Networks are used in various classification task like image, audio, words. 
+                For Image Classification we use Convolution Neural Network. Here, we are going to build basic building block for CNN.
+                <img src="../assets/networks/cnn.jpeg" class="center" height = 300 width = 800>
+            </p>
+        </div>
+        <div>
+            <h2>How CNNs Work ?</h2>
+            <p>
+                Convolution Neural Networks or covnets are neural networks that share their parameters. 
+                Imagine you have an image. 
+                It can be represented as a cuboid having its length, width (dimension of the image) and height (as image generally have red, green, and blue channels).
+                <img src="../assets/networks/cnn1.jpg" class="center" height=200>
+            </p>
+            <p>
+                Now imagine taking a small patch of this image and running a small neural network on it, with say, k outputs and represent them vertically. 
+                Now slide that neural network across the whole image, as a result, we will get another image with different width, height, and depth. 
+                Instead of just R, G and B channels now we have more channels but lesser width and height. This operation is called Convolution. 
+                If patch size is same as that of the image it will be a regular neural network. Because of this small patch, we have fewer weights.
+                <img src="../assets/networks/cnn2.png" class="center" height=300>
+            </p>
+        </div>
+        <div>
+            <h2>Math of CNNs</h2>
+            <p>
+                Now let’s talk about a bit of mathematics which is involved in the whole convolution process.
+                <ul class="listobject">
+                    <li>
+                        Convolution layers consist of a set of learnable filters (patch in the above image). 
+                        Every filter has small width and height and the same depth as that of input volume (3 if the input layer is image input).
+                    </li>
+                    <li>
+                        For example, if we have to run convolution on an image with dimension 34x34x3. 
+                        Possible size of filters can be axax3, where ‘a’ can be 3, 5, 7, etc but small as compared to image dimension.
+                    </li>
+                    <li>
+                        During forward pass, we slide each filter across the whole input volume step by step where each step is called stride (which can have value 2 or 3 or even 4 for high dimensional images) 
+                        and compute the dot product between the weights of filters and patch from input volume.
+                    </li>
+                    <li>
+                        As we slide our filters we’ll get a 2-D output for each filter and we’ll stack them together and as a result, we’ll get output volume having a depth equal to the number of filters. 
+                        The network will learn all the filters.
+                    </li>
+                </ul>
+            </p>
+        </div>
+        <div>
+            <h2>Types of CNN Layers</h2>
+            <p>
+                Let’s take an example by running a covnets on of image of dimension 32 x 32 x 3.
+                <ol class="listobject">
+                    <li>
+                        <b>Input Layer: </b> This layer holds the raw input of image with width 32, height 32 and depth 3.
+                    </li>
+                    <li>
+                        <b>Convolution Layer: </b> This layer computes the output volume by computing dot product between all filters and image patch. 
+                        Suppose we use total 12 filters for this layer we’ll get output volume of dimension 32 x 32 x 12.
+                        <img src="../assets/networks/conlayer.png" class="center">
+                    </li>
+                    <li>
+                        <b>Activation Function Layer: </b> This layer will apply element wise activation function to the output of convolution layer. 
+                        Some common activation functions are RELU: max(0, x), Sigmoid: 1/(1+e^-x), Tanh, Leaky RELU, etc. 
+                        The volume remains unchanged hence output volume will have dimension 32 x 32 x 12.
+                    </li>
+                    <li>
+                        <b>Pool Layer: </b> This layer is periodically inserted in the covnets and its main function is to reduce the size of volume which makes the computation fast reduces memory 
+                        and also prevents from overfitting. Two common types of pooling layers are max pooling and average pooling. 
+                        If we use a max pool with 2 x 2 filters and stride 2, the resultant volume will be of dimension 16x16x12.
+                        <img src="../assets/networks/poollayer.png" class="center">
+                    </li>
+                    <li>
+                        <b>Fully Connected Layer: </b> This layer is regular neural network layer which takes input from the previous layer and computes the class scores 
+                        and outputs the 1-D array of size equal to the number of classes.
+                        <img src="../assets/networks/fullylayer.png" class="center">
+                    </li>
+                </ol>
+            </p>
+            <p>
+                The final Convolutional Neural Network is made up of a combination of these layers,
+            </p>
+            <p>
+                For better understanding of CNNs and the Math behind it along eith the code,
+                check out the jupyter notebook  
+                <a href="https://github.com/crypto-code/Math-of-Neural-Networks/blob/master/2.%20Convolutional%20Neural%20Network.ipynb" style="text-decoration: underline;" target="_blank"> 
+                    here.
+                </a>
+            </p>
+        </div>
+        <footer class="footer">
+            <div class="footer">
+                <span>Author: Atin Sakkeer Hussain</span>
+            </div>
+        </footer>
+    </body>
+</html>

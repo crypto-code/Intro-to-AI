@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Artificial Intelligence</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="../styles/styles.css">
+    </head>
+    <body>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="../index.html">
+            <img src="../assets/logo.PNG" width="30" height="30" alt="">
+            Home
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Search Algorithms
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <a class="dropdown-item" href="../search/search.html">Intro</a>
+                        <a class="dropdown-item" href="../search/bfs.html">BFS</a>
+                        <a class="dropdown-item" href="../search/dfs.html">DFS</a>
+                        <a class="dropdown-item" href="../search/asearch.html">A* Search</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Neural Networks
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="./network.html">Intro</a>
+                        <a class="dropdown-item" href="./MLP.html">Simple MLP</a>
+                        <a class="dropdown-item" href="./CNN.html">CNNs</a>
+                        <a class="dropdown-item" href="./RNN.html">RNNs</a>
+                        <a class="dropdown-item" href="./GAN.html">GANs</a>
+                    </div>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Reinforcement Learning <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+          </div>
+      </nav>
+        <h1>Introduction to Recurrent Neural Networks</h1>
+        <div>
+            <p>
+                Recurrent Neural Network is a generalization of feedforward neural network that has an internal memory. 
+                RNN is recurrent in nature as it performs the same function for every input of data while the output of the current input 
+                depends on the past one computation. After producing the output, it is copied and sent back into the recurrent network. For making a decision, 
+                it considers the current input and the output that it has learned from the previous input.
+                <img src = "../assets/networks/rnn.png" class="center" height=300>
+            </p>
+            <p>
+                Unlike feedforward neural networks, RNNs can use their internal state (memory) to process sequences of inputs. 
+                This makes them applicable to tasks such as unsegmented, connected handwriting recognition or speech recognition. 
+                In other neural networks, all the inputs are independent of each other. But in RNN, all the inputs are related to each other.
+            </p>
+        </div>
+        <div>
+            <h2>Working of RNN</h2>
+            <p>
+                First, it takes the X(0) from the sequence of input and then it outputs h(0) which together with X(1) is the input for the next step. 
+                So, the h(0) and X(1) is the input for the next step. Similarly, h(1) from the next is the input with X(2) for the next step and so on. 
+                This way, it keeps remembering the context while training.
+                <img src="../assets/networks/rnn1.png" class="center" height=300>
+            </p>
+            <p>
+                The formula for the current state is
+                <div class="function">
+                    ht = f(ht-1, xt)
+                </div>
+            </p>
+            <p>
+                Applying Activation Function:
+                <div class="function">
+                    ht = tanh(Whh * ht-1 + Wxh * xt)
+                </div>
+            </p>
+            <p>
+                <b>W</b> is weight, <b>h</b> is the single hidden vector, <b>Whh</b> is the weight at previous hidden state, 
+                <b>Whx</b> is the weight at current input state, <b>tanh</b> is the Activation funtion, that implements a Non-linearity that squashes the activations to the range[-1.1]
+            </p>
+            <p>
+                For better understanding of RNNs and the Math behind it along eith the code,
+                check out the jupyter notebook  
+                <a href="https://github.com/crypto-code/Math-of-Neural-Networks/blob/master/3.%20Recurrent%20Neural%20Network.ipynb" style="text-decoration: underline;" target="_blank"> 
+                    here.
+                </a>
+            </p>
+        </div>
+        <div>
+            <h2>The Problem, Short-term Memory</h2>
+            <p>
+                Recurrent Neural Networks suffer from short-term memory. 
+                If a sequence is long enough, they’ll have a hard time carrying information from earlier time steps to later ones. 
+                So if you are trying to process a paragraph of text to do predictions, RNN’s may leave out important information from the beginning.
+            </p>
+            <p>
+                During back propagation, recurrent neural networks suffer from the vanishing gradient problem. 
+                Gradients are values used to update a neural networks weights. 
+                The vanishing gradient problem is when the gradient shrinks as it back propagates through time. 
+                If a gradient value becomes extremely small, it doesn’t contribute too much learning.
+                <img src="../assets/networks/vang.png" class="center" width=500>
+            </p>
+            <p>
+                So in recurrent neural networks, layers that get a small gradient update stops learning. 
+                Those are usually the earlier layers. 
+                So because these layers don’t learn, RNN’s can forget what it seen in longer sequences, thus having a short-term memory. 
+            </p>
+        </div>
+        <div>
+            <h2>LSTM’s and GRU’s as a solution</h2>
+            <p>
+                LSTM ’s and GRU’s were created as the solution to short-term memory. 
+                They have internal mechanisms called gates that can regulate the flow of information.
+                <img src="../assets/networks/lstmgru.png" class="center" width=800 height=400>
+            </p>
+            <p>
+                These gates can learn which data in a sequence is important to keep or throw away. 
+                By doing that, it can pass relevant information down the long chain of sequences to make predictions. 
+                Almost all state of the art results based on recurrent neural networks are achieved with these two networks. 
+                LSTM’s and GRU’s can be found in speech recognition, speech synthesis, and text generation. 
+                You can even use them to generate captions for videos.
+            </p>
+        </div>
+        <div>
+            <h2>Long Short Term Memory (LSTM)</h2>
+            <p>
+                An LSTM has a similar control flow as a recurrent neural network. 
+                It processes data passing on information as it propagates forward. 
+                The differences are the operations within the LSTM’s cells.
+                <img src="../assets/networks/lstm.png" class="center" height=400>
+                These operations are used to allow the LSTM to keep or forget information.
+            </p>
+            <h3>Core Concept</h3>
+            <p>
+                The core concept of LSTM’s are the cell state, and it’s various gates. 
+                The cell state act as a transport highway that transfers relative information all the way down the sequence chain. 
+                You can think of it as the “memory” of the network. The cell state, in theory, can carry relevant information throughout the processing of the sequence. 
+                So even information from the earlier time steps can make it’s way to later time steps, reducing the effects of short-term memory. 
+                As the cell state goes on its journey, information get’s added or removed to the cell state via gates. 
+                The gates are different neural networks that decide which information is allowed on the cell state. 
+                The gates can learn what information is relevant to keep or forget during training.
+            </p>
+            <h3>Sigmoid</h3>
+            <p>
+                Gates contains sigmoid activations. 
+                A sigmoid activation is similar to the tanh activation. 
+                Instead of squishing values between -1 and 1, it squishes values between 0 and 1. 
+                That is helpful to update or forget data because any number getting multiplied by 0 is 0, causing values to disappears or be “forgotten.” 
+                Any number multiplied by 1 is the same value therefore that value stay’s the same or is “kept.” 
+                The network can learn which data is not important therefore can be forgotten or which data is important to keep.
+                <img src="../assets/networks/sigmoid.gif" class="center" width=700>
+            </p>
+            <h3>Forget Gate</h3>
+            <p>
+                First, we have the forget gate. 
+                This gate decides what information should be thrown away or kept. 
+                Information from the previous hidden state and information from the current input is passed through the sigmoid function. 
+                Values come out between 0 and 1. The closer to 0 means to forget, and the closer to 1 means to keep.
+                <img src="../assets/networks/lforget.gif" class="center" width=700>
+            </p>
+            <h3>Input Gate</h3>
+            <p>
+                To update the cell state, we have the input gate. 
+                First, we pass the previous hidden state and current input into a sigmoid function. 
+                That decides which values will be updated by transforming the values to be between 0 and 1. 0 means not important, 
+                and 1 means important. You also pass the hidden state and current input into the tanh function to squish values between -1 and 1 to help regulate the network. 
+                Then you multiply the tanh output with the sigmoid output. The sigmoid output will decide which information is important to keep from the tanh output.
+                <img src="../assets/networks/linput.gif" class="center" width=700>
+            </p>
+            <h3>Cell State</h3>
+            <p>
+                Now we should have enough information to calculate the cell state. 
+                First, the cell state gets pointwise multiplied by the forget vector. 
+                This has a possibility of dropping values in the cell state if it gets multiplied by values near 0. 
+                Then we take the output from the input gate and do a pointwise addition which updates the cell state to new values that the neural network finds relevant. 
+                That gives us our new cell state.
+                <img src="../assets/networks/lstate.gif" class="center" width=700>
+            </p>
+            <h3>Output Gate</h3>
+            <p>
+                Last we have the output gate. 
+                The output gate decides what the next hidden state should be. 
+                Remember that the hidden state contains information on previous inputs. 
+                The hidden state is also used for predictions. 
+                First, we pass the previous hidden state and the current input into a sigmoid function. 
+                Then we pass the newly modified cell state to the tanh function. 
+                We multiply the tanh output with the sigmoid output to decide what information the hidden state should carry. 
+                The output is the hidden state. The new cell state and the new hidden is then carried over to the next time step.
+                <img src="../assets/networks/loutput.gif" class="center" width=700>
+
+                Together the different gates make up an LSTM.
+            </p>
+            <p>
+                For better understanding of LSTMs and the Math behind it along eith the code,
+                check out the jupyter notebook  
+                <a href="https://github.com/crypto-code/Math-of-Neural-Networks/blob/master/5.%20Long%20Short%20Term%20Memory%20Network.ipynb" style="text-decoration: underline;" target="_blank"> 
+                    here.
+                </a>
+            </p>
+        </div>
+        <div>
+            <h2>Gated Recurrent Unit (GRU)</h2>
+            <p>
+                So now we know how an LSTM work, let’s briefly look at the GRU. 
+                The GRU is the newer generation of Recurrent Neural networks and is pretty similar to an LSTM. 
+                GRU’s got rid of the cell state and used the hidden state to transfer information. 
+                It also only has two gates, a reset gate and update gate.
+            </p>
+            <h3>Update Gate</h3>
+            <p>
+                The update gate acts similar to the forget and input gate of an LSTM. 
+                It decides what information to throw away and what new information to add.
+            </p>
+            <h3>Reset Gate</h3>
+            <p>
+                The reset gate is another gate is used to decide how much past information to forget.
+            </p>
+            <p>
+                For better understanding of LSTMs and the Math behind it along eith the code,
+                check out the jupyter notebook  
+                <a href="https://github.com/crypto-code/Math-of-Neural-Networks/blob/master/4.%20Gated%20Recurrent%20Units.ipynb" style="text-decoration: underline;" target="_blank"> 
+                    here.
+                </a>
+            </p>
+        </div>
+        <div>
+            <h2>To sum up....</h2>
+            <p>
+                RNN’s are good for processing sequence data for predictions but suffers from short-term memory. 
+                LSTM’s and GRU’s were created as a method to mitigate short-term memory using mechanisms called gates. 
+                Gates are just neural networks that regulate the flow of information flowing through the sequence chain. 
+                LSTM’s and GRU’s are used in state of the art deep learning applications like speech recognition, speech synthesis, natural language understanding, etc.
+            </p>
+        </div>
+        <footer class="footer">
+            <div class="footer">
+                <span>Author: Atin Sakkeer Hussain</span>
+            </div>
+        </footer>
+    </body>
+</html>
