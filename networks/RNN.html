@@ -236,6 +236,44 @@
             </p>
         </div>
         <div>
+            <h2>LSTM vs GRU</h2>
+            <p>
+                For comparision let us look at their perfomance on the same dataset:
+                <table class="collapsable" border="5" cellpadding = "10" cellspacing = "5">
+                        <tr>
+                            <th></th>
+                            <th>GRU</th>
+                            <th>LSTM</th>
+                        </tr>
+                        <tr>
+                            <td>Cells</td>
+                            <td>16</td>
+                            <td>16</td>
+                        </tr>
+                        <tr>
+                            <td>Epochs</td>
+                            <td>10</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td>Parameters</td>
+                            <td>864</td>
+                            <td>1152</td>
+                        </tr>
+                        <tr>
+                            <td>Accuracy [%]</td>
+                            <td>91.2</td>
+                            <td>92.5</td>
+                        </tr>
+                        <tr>
+                            <td>Training Time</td>
+                            <td>2h 14min</td>
+                            <td>2h 43min</td>
+                        </tr>
+                </table>
+            </p>
+        </div>
+        <div>
             <h2>To sum up....</h2>
             <p>
                 RNN’s are good for processing sequence data for predictions but suffers from short-term memory. 
