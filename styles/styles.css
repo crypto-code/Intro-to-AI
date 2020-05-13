@@ -42,8 +42,9 @@ a, .dropdown-item, #navbarDropdownMenuLink {
 
 .center + p {
   margin-left: 12%;
+  margin-right: 12%;
   font-style: oblique;
-  font-size: large;
+  font-size: larger;
 }
 
 p {
@@ -52,7 +53,7 @@ p {
   margin-right: 40px;
   margin-left: 40px;
   font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: large;
+  font-size: larger;
 }
 
 .listobject {
@@ -61,7 +62,7 @@ p {
   margin-right: 40px;
   margin-left: 40px;
   font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: large;
+  font-size: larger;
 }
 
 .listobject > li {

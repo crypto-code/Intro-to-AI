@@ -139,6 +139,110 @@
                         <b>Q-value or action-value (Q):</b> Q-value is similar to Value, except that it takes an extra parameter, the current action a. Qπ(s, a) refers to the long-term return of the current state s, taking action a under policy π.
                     </li>
                 </ul>
+                <img src="../assets/rl/rl.png" class="center" height=500>
+            </p>
+        </div>
+        <div>
+            <h2>How Reinforcement Learning Works</h2>
+            <p>
+                There are majorly three approaches to implement a reinforcement learning algorithm. They are -
+                <ul class="listobject">
+                    <li>
+                        <b>Value Based: </b>In a value-based reinforcement learning method, you try to maximize a value function V(s). 
+                        As defined in the terminology previously, Vπ(s) is the expected long-term return of the current state s under policy π. 
+                        Thus, V(s) is the value of reward which the agent expects to gain in the future upon starting at that state s.
+                        <img src="../assets/rl/vbased.png" class="center">
+                    </li>
+                    <li>
+                        Policy-based: in a policy-based reinforcement learning method, you try to come up with a policy such that the action performed at each state is optimal to gain maximum reward in the future. 
+                        Here, no value function is involved. We know that the policy π determines the next action a at any state s. There are two types of policy-based RL methods -
+                        <ul class = "listobject">
+                            <li>
+                                Deterministic: at any state s, the same action a is produced by the policy π.
+                            </li>
+                            <li>
+                                Stochastic: each action has a certain probability, given by the equation below -
+                                <img src="../assets/rl/spbased.png" class="center">
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </div>
+        <div>
+            <h2>An Example: Tic-Tac-Toe</h2>
+            <img src="../assets/rl/tictac.png" class = "center">
+            <p>
+                A sequence of tic-tac-toe moves. 
+                The solid black lines represent the moves taken during a game; 
+                the dashed lines represent moves that the agent considered but did not make. 
+                Our second move was an exploratory move, meaning that it was taken even though another sibling move, 
+                the one leading to e*, was ranked higher. 
+                Exploratory moves do not result in any learning, but each of our other moves do, causing updates as
+                suggested by the red arrows in which estimated values are moved up the tree from later nodes to earlier.
+            </p>
+            <p>
+                Reinforcement Learning Approach to solve Tic-Tac-Toe:
+                <ol class="listobject">
+                    <li>
+                        Set up table of numbers, one for each possible state of the game.
+                    </li>
+                    <li>
+                        Each number will be our latest estimate of our probability of winning from that state.
+                    </li>
+                    <li>
+                        This estimate is the state’s value and the whole table is the learned value function.
+                    </li>
+                    <li>
+                        Assuming we always play Xs, then for all states with 3 Xs in a row (column and diagonal) the probability of winning is 1.0
+                    </li>
+                    <li>
+                        And for all states with 3 Os in a row (column and diagonal) the probability of winning is 0.0
+                    </li>
+                    <li>
+                        We set the initial values of all other states to 0.5 (representing we have a 50% chance of winning.)
+                    </li>
+                </ol>
+            </p>
+            <p>
+                We then play many games against the opponent. To select our moves:
+                <ol class="listobject">
+                    <li>
+                        We examine the states that would result from each of our possible moves and look up their current values in the table.
+                    </li>
+                    <li>
+                        Most of the time we move greedily, selecting the move that leads to the state with the greatest value. (highest probability of winning)
+                    </li>
+                    <li>
+                        Occasionally, we select randomly from among the other moves instead. (Exploration)
+                    </li>
+                </ol>
+            </p>
+            <p>
+                We then play many games against the opponent. To select our moves:
+                <ol class="listobject">
+                    <li>
+                        After each greedy move, from A to B, we update the value of A to be more closer to the value of B.
+                    </li>
+                    <li>
+                        This is achieved using the following formula
+                        <img src="../assets/rl/f1.png" class="center" width=600>
+                        where,
+                            V(S_t) — value of the older state, state before the greedy move (A),   
+                            V(S_t+1) — value of the new state, state after the greedy move (B),   
+                            alpha — learning rate
+                    </li>
+                </ol>
+            </p>
+            <p>
+                This update rule is an example of <b>Temporal-Difference Learning</b> method, so called because its changes are based on a difference, V(S_t+1) — V(S_t), between estimates at two successive times.
+            </p>
+            <p>
+                For better understanding of Reinforcement Learning along eith the code,
+                check out the jupyter notebook  
+                <a href="https://github.com/crypto-code/Atari-AI" style="text-decoration: underline;" target="_blank"> 
+                    here.
+                </a>
             </p>
         </div>
         <footer class="footer">
